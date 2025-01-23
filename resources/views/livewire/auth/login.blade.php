@@ -4,6 +4,7 @@
             <div class="col-12 d-flex align-items-center justify-content-center">
                 <div class="bg-white shadow-soft border rounded border-light p-4 p-lg-5 w-100 fmxw-500">
                     <div class="text-center text-md-center mb-4 mt-md-0">
+                        <img src="{{ asset('images/brand/logo_color.webp') }}" class="mb-5 w-75" alt="">
                         <h1 class="mb-3 h3">{{ config('app.name') }}</h1>
                     </div>
 
