@@ -9,47 +9,21 @@
 
     <li class="nav-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
         <a href="{{ route('dashboard') }}" class="nav-link">
-            <span class="sidebar-icon">
-                <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
-                    <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
-                </svg>
+            <span class="sidebar-icon me-3">
+                <i class="fas fa-home"></i>
             </span>
             <span class="sidebar-text">{{ __('Dashboard') }}</span>
         </a>
     </li>
 
-    <li class="nav-item {{ request()->routeIs('users.index') ? 'active' : '' }}">
-        <a href="{{ route('users.index') }}" class="nav-link">
-            <span class="sidebar-icon me-3">
-                <i class="fas fa-user-alt fa-fw"></i>
-            </span>
-            <span class="sidebar-text">{{ __('Users') }}</span>
-        </a>
-    </li>
-
-    <li class="nav-item {{ request()->routeIs('about') ? 'active' : '' }}">
-        <a href="{{ route('about') }}" class="nav-link">
-            <span class="sidebar-icon">
-                <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
-                    <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
-                </svg>
-            </span>
-            <span class="sidebar-text">{{ __('About us') }}</span>
-        </a>
-    </li>
-
-    <li class="nav-item">
+    <li class="nav-item {{ request()->routeIs('users.*') || request()->routeIs('roles.*') ? 'active' : '' }}">
         <span class="nav-link d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
-            data-bs-target="#submenu-app">
+            data-bs-target="#admin-settings">
             <span>
                 <span class="sidebar-icon me-3">
-                    <i class="fas fa-circle fa-fw"></i>
+                    <i class="fas fa-cog"></i>
                 </span>
-                <span class="sidebar-text">Two-level menu</span>
+                <span class="sidebar-text">{{ __('Admin Settings') }}</span>
             </span>
             <span class="link-arrow">
                 <svg class="icon icon-sm" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -60,14 +34,22 @@
                 </svg>
             </span>
         </span>
-        <div class="multi-level collapse" role="list" id="submenu-app" aria-expanded="false">
+        <div class="multi-level collapse" role="list" id="admin-settings" aria-expanded="false">
             <ul class="flex-column nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
+                <li class="nav-item {{ request()->routeIs('users.*') ? 'active' : '' }}">
+                    <a href="{{ route('users.index') }}" class="nav-link" wire:navigate>
                         <span class="sidebar-icon">
-                            <i class="fas fa-circle"></i>
+                            <i class="fas fa-users"></i>
                         </span>
-                        <span class="sidebar-text">Child menu</span>
+                        <span class="sidebar-text">{{ __('Users') }}</span>
+                    </a>
+                </li>
+                <li class="nav-item {{ request()->routeIs('roles.*') ? 'active' : '' }}">
+                    <a href="{{ route('roles.index') }}" class="nav-link" wire:navigate>
+                        <span class="sidebar-icon">
+                            <i class="fas fa-user-cog"></i>
+                        </span>
+                        <span class="sidebar-text">{{ __('Roles') }}</span>
                     </a>
                 </li>
             </ul>
